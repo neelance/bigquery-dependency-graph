@@ -73,7 +73,7 @@ func analyzeTable(ctx context.Context, table *bigquery.Table) error {
 	}
 	fmt.Printf("\"%s.%s\";\n", table.DatasetID, table.TableID)
 	if m.Type == bigquery.ViewTable {
-		for _, match := range tablePattern.FindAllStringSubmatch(m.View, -1) {
+		for _, match := range tablePattern.FindAllStringSubmatch(m.ViewQuery, -1) {
 			parts := strings.Split(match[1], ".")
 			fmt.Printf("\"%s.%s\" -> \"%s.%s\";\n", table.DatasetID, table.TableID, parts[1], parts[2])
 		}
